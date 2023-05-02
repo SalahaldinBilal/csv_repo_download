@@ -10,7 +10,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
 
     if (!csvFileToDownload?.length) return response(400, "Empty or non existent file name")
 
-    const file = await downloadS3File(csvFileToDownload);
+    const file = await downloadS3File(decodeURIComponent(csvFileToDownload));
 
     if (!file) return response(404, "File doesn't exist");
 
